@@ -5,5 +5,9 @@ export default colors = {
     secondary: "#8779B0",
     third: "#FFD022",
     primaryDark: "#19498E",
-    border: "#DDD"
+    border: "#DDD",
+    british: {
+        red: "#e84118",
+        green: "#44bd32"
+    }
 }

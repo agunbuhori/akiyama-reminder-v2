@@ -1,13 +1,12 @@
-import { createSwitchNavigator } from 'react-navigation';
-
+import { createStackNavigator } from 'react-navigation';
 import AgunTransition from 'agunbuhori-rn-transition';
 
 import LoginScreen from './auth/LoginScreen';
-import ForgotPasswordScreen from './auth/ForgotPasswordScreen';
+import MenuNavigator from './MenuNavigator';
 
-const AuthNavigator = createSwitchNavigator({
+const AuthNavigator = createStackNavigator({
     Login: {screen: LoginScreen, navigationOptions: { header: null }},
-    ForgotPassword: {screen: ForgotPasswordScreen, navigationOptions: { header: null }},
+    Menu: {screen: MenuNavigator, navigationOptions: {header: null}}
 }, {
     transitionConfig: AgunTransition
 });
