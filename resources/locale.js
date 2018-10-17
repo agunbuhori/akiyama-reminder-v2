@@ -41,7 +41,8 @@ export default locale = {
         email: 'Eメール',
         police_number: '警察の番号',
         car_type: '車種',
-        phone_number: '電話番号'
+        phone_number: '電話番号',
+        my_car: '私の車'
     }
 }
 

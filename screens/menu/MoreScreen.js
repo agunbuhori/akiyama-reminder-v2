@@ -5,6 +5,7 @@ import transition from 'agunbuhori-rn-transition';
 import ListMore from './more/ListMore';
 import MyProfile from './more/MyProfile';
 import { env } from '../../global';
+import MyCar from './more/MyCar';
 
 const MoreScreen = createStackNavigator({
     List: { screen: ListMore, navigationOptions: {
@@ -26,7 +27,12 @@ const MoreScreen = createStackNavigator({
             headerTitleStyle: {
                 color: 'white'
             }
-        } }
+    }},
+    MyCar: {
+        screen: MyCar, navigationOptions: {
+            header: null
+        }
+    }
 }, {
     transitionConfig: transition
 });

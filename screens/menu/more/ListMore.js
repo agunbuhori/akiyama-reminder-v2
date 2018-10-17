@@ -23,7 +23,9 @@ export default class ListMore extends Component {
         return (
             <Container>
                 <Content>
-                    <MoreMenu icon="home" title="My Profile" to="MyProfile" navigation={this.props.navigation}/>
+                    <MoreMenu icon="home" title={env.locale.jp.my_profile} to="MyProfile" navigation={this.props.navigation}/>
+                    
+                    <MoreMenu icon="car" title={env.locale.jp.my_car} to="MyCar" navigation={this.props.navigation}/>
                 </Content>
             </Container>
         );
