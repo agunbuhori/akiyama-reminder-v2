@@ -32,6 +32,16 @@ export default locale = {
         maintenance: 'メンテナンス',
         home: "ホーム",
         no_reservation: '予約なし',
+        more: 'もっと',
+        my_profile: 'プロフィール',
+        fullname: '氏名',
+        birthday: '性別',
+        gender: 'お誕生日',
+        address: '住所',
+        email: 'Eメール',
+        police_number: '警察の番号',
+        car_type: '車種',
+        phone_number: '電話番号'
     }
 }
 

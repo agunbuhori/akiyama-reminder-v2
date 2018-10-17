@@ -16,5 +16,11 @@ export default date = {
     },
     formatMonth(month) {
         return moment(month, 'MM-DD').format(monthFormat);
-    }
+    },
+    getMonth(dm) {
+        return moment(dm, 'MM-DD').format('MM月');
+    },
+    getDay(dm) {
+        return moment(dm, 'MM-DD').format('DD日');
+    },
 }

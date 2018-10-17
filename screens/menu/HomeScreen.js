@@ -58,7 +58,9 @@ export default class HomeScreen extends Component {
                     }
                 ).start();    
             })
-            .catch(error => console.log(error));
+            .catch(error => {
+                alert("Sesi telah habis");
+            });
         });
     }
 
@@ -93,10 +95,17 @@ export default class HomeScreen extends Component {
                         </View>
 
                         <View style={styles.slider}>
-                            <Text style={{ fontSize: 12, marginTop: 10, fontWeight: 'bold' }}>{env.locale.jp.mileage}</Text>
+                            <View style={{flexDirection: 'row'}}>
+                            <View style={{width: '50%'}}>
+                                <Text style={{ fontSize: 12, marginTop: 10, fontWeight: 'bold', alignSelf: 'flex-start' }}>{env.locale.jp.mileage}</Text>
+                            </View>
+                            <View style={{width: '50%'}}>
+                                <Text style={{ fontSize: 12, marginTop: 10, fontWeight: 'bold', alignSelf: 'flex-end' }}>{this.state.data.mileage}Km</Text>
+                            </View>
+                            </View>
                             <Slider
                                 disabled={true}
-                                value={0.5}
+                                value={this.state.data.mileage/70000}
                                 
                                 style={styles.containerSlider}
                                 trackStyle={styles.track}
@@ -105,10 +114,18 @@ export default class HomeScreen extends Component {
                                 thumbTouchSize={{ width: 50, height: 5 }}
                             />
 
-                            <Text style={{ fontSize: 12, marginTop: 10, fontWeight: 'bold' }}>{env.locale.jp.leasing}</Text>
+                            <View style={{ flexDirection: 'row' }}>
+                                <View style={{ width: '50%' }}>
+                                    <Text style={{ fontSize: 12, marginTop: 10, fontWeight: 'bold', alignSelf: 'flex-start' }}>{env.locale.jp.leasing}</Text>
+                                </View>
+                                <View style={{ width: '50%' }}>
+                                    <Text style={{ fontSize: 12, marginTop: 10, fontWeight: 'bold', alignSelf: 'flex-end' }}>{this.state.data.leasing}Km</Text>
+                                </View>
+                            </View>
                             <Slider
                                 disabled={true}
-                                value={0.7}
+                                value={this.state.data.leasing / 70000}
+
                                 style={styles.containerSlider}
                                 trackStyle={styles.track}
                                 thumbStyle={styles.thumb}
@@ -118,13 +135,11 @@ export default class HomeScreen extends Component {
                         </View>
                         
                         <View style={styles.reservation}>
-                            <Button iconRight style={styles.reservationButton} onPress={() => AsyncStorage.removeItem('userToken')}>
-                                <Text>{env.locale.jp.with_email}</Text>
+                            <Button style={styles.reservationButton} onPress={() => AsyncStorage.removeItem('userToken')}>
                                 <Icon type="Entypo" name="email"/>
                             </Button>
                             
-                            <Button iconRight success style={styles.reservationButton} onPress={() => this.callNumber()}>
-                                <Text>{env.locale.jp.with_telephone}</Text>
+                            <Button success style={styles.reservationButton} onPress={() => this.callNumber()}>
                                 <Icon type="Entypo" name="phone"/>
                             </Button>
                         </View>
@@ -195,7 +210,8 @@ const styles = StyleSheet.create({
     reservationButton: {
         width: '50%',
         borderRadius: 0,
-        alignItems: 'center'
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     car: {
         position: 'absolute',
@@ -206,7 +222,7 @@ const styles = StyleSheet.create({
         paddingRight: 15,
         marginBottom: 10,
         borderTopWidth: 0.5,
-        borderTopColor: env.colors.border,
+        borderTopColor: env.colors.border
     },
     carousel: {
         borderRadius: 10,
@@ -227,7 +243,8 @@ const styles = StyleSheet.create({
         width: '60%'
     },
     containerSlider: {
-        height: 10
+        height: 10,
+        width: '100%'
     },
     track: {
         height: 2,

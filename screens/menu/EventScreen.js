@@ -94,7 +94,7 @@ export default class EventScreen extends Component {
                             <Text style={{fontSize: 14}}>{this.state.selectedEvent.desc}</Text>
                         </View>
                     </View>
-                    <Button small style={styles.closeButton} onPress={() => this.setState({modalVisible: false})}><Icon name="arrow-down"/></Button>
+                    <Button small style={styles.closeButton} onPress={() => this.setState({modalVisible: false})}><Icon type="FontAwesome" name="times"/></Button>
                 </View>
             </Modal>
         );

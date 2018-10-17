@@ -7,6 +7,7 @@ import HomeScreen from './menu/HomeScreen';
 import EventScreen from './menu/EventScreen';
 import CouponScreen from './menu/CouponScreen';
 import MaintenanceScreen from './menu/MaintenanceScreen';
+import MoreScreen from './menu/MoreScreen';
 import { env } from '../global';
 
 const MenuIcon = (props) => ({
@@ -56,10 +57,20 @@ const MenuNavigator = createBottomTabNavigator({
         }
     },
 
+    List: {
+        screen: MoreScreen,
+        navigationOptions: {
+            tabBarLabel: env.locale.jp.more,
+            tabBarIcon: ({ tintColor }) => (
+                <MenuIcon tintColor={tintColor} icon="list" />
+            )
+        }
+    },
+
 }, {
     tabBarOptions: {
         style: {
-            borderTopColor: '#eee'
+            borderTopColor: env.colors.border,
         }
     }
 });

@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, FlatList, ActivityIndicator, RefreshControl } from 'react-native';
 import { Container, Text, Button, Icon, View, Content, Tabs, Tab, ScrollableTab } from 'native-base';
-import ScalableImage from 'react-native-scalable-image';
-import Modal from "react-native-modal";
-import Ripple from 'react-native-material-ripple';
 import { env, lib } from '../../../global';
 
 import HeaderComponent from '../../components/HeaderComponent';
@@ -76,7 +73,7 @@ export default class MyReservation extends Component {
                                 <View style={[styles.myBooking, {marginTop: 0, alignItems: 'flex-start'}]}>
                                     {
                                         this.state.data.services.map((item, index) => {
-                                            return <Text key={index} style={{fontSize: 14, fontWeight: 'bold'}}>{item}</Text>
+                                            return <Text key={index} style={{ fontSize: 14 }}>{'\u2022'} {item}</Text>
                                         })
                                     }
                                 </View>

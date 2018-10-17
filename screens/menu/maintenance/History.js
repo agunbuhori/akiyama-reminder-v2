@@ -9,7 +9,7 @@ import { env, lib } from '../../../global';
 import HeaderComponent from '../../components/HeaderComponent';
 import MaintenanceSegment from './MaintenanceSegment';
 
-export default class Schedule extends Component {
+export default class History extends Component {
     constructor(props) {
         super(props);
 
@@ -29,17 +29,17 @@ export default class Schedule extends Component {
 
     async _getData() {
         lib.session.getUserToken().then(token => {
-            fetch(env.http.baseUrl + 'my-schedules', {
+            fetch(env.http.baseUrl + 'my-histories', {
                 headers: {
                     'Authorization': 'bearer ' + token,
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 }
             })
-            .then(response => response.json())
-            .then(response => {
-                this.setState({ status: 1, data: response, refreshing: false });
-            });
+                .then(response => response.json())
+                .then(response => {
+                    this.setState({ status: 1, data: response, refreshing: false });
+                });
         });
     }
 
@@ -50,46 +50,37 @@ export default class Schedule extends Component {
     _renderSchedule() {
         if (this.state.status === 1)
             return (
-                <Tabs renderTabBar={() => <ScrollableTab style={{borderColor: env.colors.border, borderWidth: 0.5}}/>} tabBarBackgroundColor="#fff">
-                    {
-                        this.state.data.map((year, index) => {
-                            return (
-                                <Tab 
-                                activeTextStyle={{fontWeight: '500'}}
-                                activeTabStyle={{backgroundColor: '#fff'}}
-                                textStyle={{fontWeight: '500'}}
-                                tabStyle={{
-                                    backgroundColor: '#fff',
-                                }}
-                                heading={lib.date.formatYear(year.year)} 
-                                key={index} 
-                                style={{ backgroundColor: 'transparent' }}>
-                                    <FlatList
-                                        data={year.periodes}
-                                        keyExtractor={(item, index) => index.toString()}
-                                        renderItem={(periode, index) =>
-                                            <View style={[styles.periodeItem, { marginTop: parseInt(periode.index) == 0 ? 10 : 0 }]}>
-                                                <View style={styles.periodeNumberDate}>
-                                                    <View style={styles.periodeNumber}>
-                                                        <Text style={styles.periodeNumberText}>{periode.item.periode+env.locale.jp.periode_text}</Text>
-                                                    </View>
-                                                    <View style={styles.periodeDate}>
-                                                        <Text style={styles.periodeDateText}>{lib.date.formatMonth(periode.item.date)}</Text>
-                                                    </View>
+                <Content>
+                    {this.state.data.map((year, index) => {
+                        return ( 
+                            <View style={styles.historyItem} key={index}>
+                                <Text style={{fontWeight: 'bold', alignSelf: 'center', color: '#333'}}>{lib.date.formatYear(year.year)}</Text>
+
+                                <FlatList
+                                    data={year.periodes}
+                                    keyExtractor={(item, index) => index.toString()}
+                                    renderItem={(periode, index) =>
+                                        <View style={[styles.periodeItem, { marginTop: parseInt(periode.index) == 0 ? 10 : 0 }]}>
+                                            <View style={styles.periodeNumberDate}>
+                                                <View style={styles.periodeNumber}>
+                                                    <Text style={styles.periodeNumberText}>{lib.date.getMonth(periode.item.date)}</Text>
                                                 </View>
-                                                <View style={styles.periodeServices}>
-                                                    {periode.item.services.map((service, index) => {
-                                                        return <Text style={styles.serviceText} key={index}>{'\u2022'} {service}</Text>
-                                                    })}
+                                                <View style={styles.periodeDate}>
+                                                    <Text style={styles.periodeDateText}>{lib.date.getDay(periode.item.date)}</Text>
                                                 </View>
                                             </View>
-                                        }
-                                    />
-                                </Tab>
-                            );
-                        })
-                    }
-                </Tabs>
+                                            <View style={styles.periodeServices}>
+                                                {periode.item.services.map((service, index) => {
+                                                    return <Text style={styles.serviceText} key={index}>{'\u2022'} {service}</Text>
+                                                })}
+                                            </View>
+                                        </View>
+                                    }
+                                />
+                            </View>
+                        )
+                    })}
+                </Content>
             );
         else
             return (
@@ -103,8 +94,8 @@ export default class Schedule extends Component {
         return (
             <Container style={styles.container}>
                 <HeaderComponent title={env.locale.jp.maintenance} />
-                <MaintenanceSegment active={1} navigation={this.props.navigation} />
-                
+                <MaintenanceSegment active={3} navigation={this.props.navigation} />
+
                 {this._renderSchedule()}
             </Container>
         );
@@ -121,6 +112,9 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         flexDirection: 'row'
     },
+    historyItem: {
+        marginTop: 10
+    }, 
     periodeNumberDate: {
         width: '20%',
         paddingRight: 10,
@@ -149,7 +143,7 @@ const styles = StyleSheet.create({
         borderColor: env.colors.border
     },
     periodeDateText: {
-        fontSize: 11,
+        fontSize: 13,
         fontWeight: 'bold',
     },
     periodeServices: {

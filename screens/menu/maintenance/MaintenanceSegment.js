@@ -19,7 +19,7 @@ export default class MaintenanceSegment extends Component {
                     <Text style={[styles.segmentText, this.props.active == 2 ? styles.activeSegmentText : {}]}>{env.locale.jp.my_reservation}</Text>
                 </Button>
 
-                <Button onPress={() => this.props.navigation.navigate('MyMaintenance')} last style={[styles.segmentButton, styles.segmentButtonLast, this.props.active == 3 ? styles.activeSegment : {}]}>
+                <Button onPress={() => this.props.navigation.navigate('History')} last style={[styles.segmentButton, styles.segmentButtonLast, this.props.active == 3 ? styles.activeSegment : {}]}>
                     <Text style={[styles.segmentText, this.props.active == 3 ? styles.activeSegmentText : {}]}>{env.locale.jp.history}</Text>
                 </Button>
             </Segment>
