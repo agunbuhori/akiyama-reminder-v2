@@ -8,6 +8,8 @@ import Carousel from 'react-native-snap-carousel';
 import Ripple from 'react-native-material-ripple';
 import { env, lib } from '../../global';
 
+import { configure, localNotification } from '../../features/PushNotifications';
+
 export default class HomeScreen extends Component {
     constructor(props) {
         super(props);
@@ -21,8 +23,14 @@ export default class HomeScreen extends Component {
         }
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this._getData();
+        configure();
+        
+    }
+
+    testNotification() {
+        localNotification();
     }
 
     async _getData() {
@@ -60,6 +68,7 @@ export default class HomeScreen extends Component {
             })
             .catch(error => {
                 alert("Sesi telah habis");
+                AsyncStorage.removeItem('userToken');
             });
         });
     }
@@ -135,7 +144,7 @@ export default class HomeScreen extends Component {
                         </View>
                         
                         <View style={styles.reservation}>
-                            <Button style={styles.reservationButton} onPress={() => AsyncStorage.removeItem('userToken')}>
+                            <Button style={styles.reservationButton} onPress={() => this.testNotification()}>
                                 <Icon type="Entypo" name="email"/>
                             </Button>
                             

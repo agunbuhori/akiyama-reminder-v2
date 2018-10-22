@@ -115,10 +115,6 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: env.colors.background,
     },
-    eventContent: {
-        paddingLeft: 10,
-        paddingRight: 10
-    },
     eventItem: {
         borderRadius: 10,
         overflow: 'hidden',
@@ -126,7 +122,9 @@ const styles = StyleSheet.create({
         borderWidth: 0.5,
         borderColor: env.colors.border,
         minHeight: 100,
-        backgroundColor: '#eee'
+        backgroundColor: '#eee',
+        marginLeft: 10,
+        marginRight: 10,
     },
     eventDescription: {
         padding: 10,

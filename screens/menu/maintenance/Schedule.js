@@ -50,14 +50,14 @@ export default class Schedule extends Component {
     _renderSchedule() {
         if (this.state.status === 1)
             return (
-                <Tabs renderTabBar={() => <ScrollableTab style={{borderColor: env.colors.border, borderWidth: 0.5}}/>} tabBarBackgroundColor="#fff">
+                <Tabs tabBarUnderlineStyle={{backgroundColor: env.colors.primary}} renderTabBar={() => <ScrollableTab style={{borderColor: env.colors.border, borderWidth: 0.5}}/>} tabBarBackgroundColor="#fff">
                     {
                         this.state.data.map((year, index) => {
                             return (
                                 <Tab 
-                                activeTextStyle={{fontWeight: '500'}}
+                                activeTextStyle={{fontWeight: '500', color: env.colors.primary}}
                                 activeTabStyle={{backgroundColor: '#fff'}}
-                                textStyle={{fontWeight: '500'}}
+                                textStyle={{fontWeight: '500', color: '#333'}}
                                 tabStyle={{
                                     backgroundColor: '#fff',
                                 }}
@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
         minHeight: 70
     },
     serviceText: {
-        color: global.fontColor,
-        fontSize: 14
+        color: '#333',
+        fontSize: 14,
     }
 });

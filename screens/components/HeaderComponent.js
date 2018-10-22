@@ -11,7 +11,7 @@ export default class HeaderComponent extends Component {
     render() {
         return (
             <Header style={styles.header}>
-                <StatusBar barStyle="light-content"/>
+                <StatusBar barStyle="light-content" backgroundColor={env.colors.primary}/>
                 <Body>
                     <Title style={{color: 'white'}}>{this.props.title}</Title>
                 </Body>

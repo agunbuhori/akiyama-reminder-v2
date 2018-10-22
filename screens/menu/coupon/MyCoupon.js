@@ -46,28 +46,11 @@ export default class MyCoupon extends Component {
         this._getData();
     }
 
-    // onSuccess(e) {
-
-    //     lib.session.getUserToken().then(token => {
-    //         fetch(env.http.baseUrl+'get-barcode/'+e.data, {
-    //             method: 'POST',
-    //             headers: {
-    //                 Accept: 'application/json',
-    //                 'Authorization': 'bearer ' + token,
-    //                 'Content-Type': 'application/json',
-    //             },
-    //             body: JSON.stringify({
-    //                 id: e.data
-    //             })
-    //         })
-    //         .then(response => response.json())
-    //         .then(response => alert(JSON.stringify(response)));
-    //     })
-    // }
 
     _renderCoupons() {
         if (this.state.status === 1)
             return (
+                <View style={{ alignItems: 'center', width: '100%', flex: 1, paddingLeft: 10, paddingRight: 10 }}>
                 <Content style={styles.couponContent} refreshControl={<RefreshControl refreshing={this.state.refreshing} onRefresh={this.handleRefresh.bind(this)} />}>
                     <FlatList
                         data={this.state.data}
@@ -106,6 +89,7 @@ export default class MyCoupon extends Component {
                         keyExtractor={(item, index) => index.toString()}
                     />
                 </Content>
+                </View>
             );
         else
             return (
@@ -152,10 +136,9 @@ const styles = StyleSheet.create({
         borderColor: env.colors.border,
         flexBasis: 0,
         flexGrow: 1,
-        marginLeft: 5,
-        marginRight: 5,
         flexDirection: 'row',
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+        width: '100%'
     },
     couponDetail: {
         flexDirection: 'row'

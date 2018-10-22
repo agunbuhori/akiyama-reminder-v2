@@ -73,6 +73,7 @@ export default class CouponList extends Component {
     _renderCoupons() {
         if (this.state.status === 1)
             return (
+                <View style={{alignItems: 'center', width: '100%', flex: 1}}>
                 <Content style={styles.couponContent} refreshControl={<RefreshControl refreshing={this.state.refreshing} onRefresh={this.handleRefresh.bind(this)} />}>
                     <FlatList
                         numColumns={2}
@@ -111,6 +112,7 @@ export default class CouponList extends Component {
                         keyExtractor={(item, index) => index.toString()}
                     />
                 </Content>
+                </View>
             );
         else
             return (
@@ -159,10 +161,6 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: env.colors.background,
     },
-    couponContent: {
-        paddingLeft: 5,
-        paddingRight: 5,
-    },
     couponItem: {
         borderRadius: 10,
         overflow: 'hidden',
@@ -171,7 +169,7 @@ const styles = StyleSheet.create({
         borderColor: env.colors.border,
         marginLeft: 5,
         marginRight: 5,
-        backgroundColor: 'white'
+        backgroundColor: 'white',
     },
     couponDescription: {
         padding: 10,

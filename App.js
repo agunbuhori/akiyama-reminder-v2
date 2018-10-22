@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View, AsyncStorage, ActivityIndicator} from 'react-native';
+import { StyleSheet, Text, View, AsyncStorage, StatusBar} from 'react-native';
 import SplashScreen from 'react-native-splash-screen'
 
 import { createSwitchNavigator } from 'react-navigation';
 import { Container } from 'native-base';
 import AuthNavigator from './screens/AuthNavigator';
 import MenuNavigator from './screens/MenuNavigator';
+import { env } from './global';
 
 export default class App extends Component {
   constructor(props) {
@@ -44,6 +45,7 @@ export default class App extends Component {
   render() {
     return (
       <Container>
+        <StatusBar backgroundColor={env.colors.primary}/>
         {this._renderFirstScreen()}
       </Container>
     );

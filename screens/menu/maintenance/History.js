@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
         minHeight: 70
     },
     serviceText: {
-        color: global.fontColor,
+        color: '#333',
         fontSize: 14
     }
 });

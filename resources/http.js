@@ -1,3 +1,3 @@
 export default http = {
-    baseUrl: "http://192.168.0.116/carnotif/public/api/v1/"
+    baseUrl: "https://reminder.sumroch.id/public/api/v1/"
 }
